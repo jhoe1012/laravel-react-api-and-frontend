@@ -45,4 +45,6 @@ npm run dev
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init
 npm install -D eslint eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks
+npm run lint
+npm install react-router-dom --save
 ```
