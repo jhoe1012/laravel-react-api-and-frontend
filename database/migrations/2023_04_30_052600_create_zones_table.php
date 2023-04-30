@@ -21,9 +21,9 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Zone::created(['name' => 'Green Zone', 'price_per_hour' => 100]);
-        Zone::created(['name' => 'Yellow Zone', 'price_per_hour' => 200]);
-        Zone::created(['name' => 'Red Zone', 'price_per_hour' => 300]);
+        Zone::create(['name' => 'Green Zone', 'price_per_hour' => 100]);
+        Zone::create(['name' => 'Yellow Zone', 'price_per_hour' => 200]);
+        Zone::create(['name' => 'Red Zone', 'price_per_hour' => 300]);
     }
 
     /**
