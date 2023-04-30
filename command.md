@@ -26,4 +26,5 @@ php artisan make:factory VehicleFactory --model=Vehicle
 php artisan make:test ParkingTest
 composer require --dev knuckleswtf/scribe
 php artisan vendor:publish --tag=scribe-config
+php artisan scribe:generate
 ```
