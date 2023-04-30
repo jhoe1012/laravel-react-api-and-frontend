@@ -13,8 +13,8 @@ class PasswordUpdateController extends Controller
     public function __invoke(Request $request)
     {
         $request->validate([
-            'old_password' => ['required', 'current_password'],
-            'new_password' => ['required',  Password::default()],
+            'current_password' => ['required', 'current_password'],
+            'password' => ['required', 'confirmed',  Password::default()],
         ]);
 
         auth()->user()->update([
@@ -24,6 +24,5 @@ class PasswordUpdateController extends Controller
         return response()->json([
             'message' => 'Your password has been updated',
         ], Response::HTTP_ACCEPTED);
-
     }
 }

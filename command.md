@@ -18,4 +18,11 @@ php artisan make:resource ZoneResource
 php artisan make:controller Api/V1/ParkingController
 php artisan make:resource ParkingResource
 php artisan make:observer ParkingObserver --model=Parking
+php artisan make:test AuthenticationTest
+php artisan make:test ProfileTest
+php artisan make:test ZoneTest
+php artisan make:test VehicleTest
+php artisan make:factory VehicleFactory --model=Vehicle
+php artisan make:test ParkingTest
+
 ```

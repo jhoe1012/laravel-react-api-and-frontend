@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('profile', [Auth\ProfileController::class, 'update']);
     Route::put('password', Auth\PasswordUpdateController::class);
     Route::post('auth/logout', Auth\LogoutController::class);
-    Route::apiResource('vehicle', VehicleController::class);
+    Route::apiResource('vehicles', VehicleController::class);
     Route::post('parkings/start', [ParkingController::class, 'start']);
     Route::get('parkings/{parking}', [ParkingController::class, 'show']);
     Route::put('parkings/{parking}', [ParkingController::class, 'stop']);
