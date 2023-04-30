@@ -15,4 +15,7 @@ php artisan make:controller Api/V1/VehicleController --resource --api --model=Ve
 php artisan make:resource VehicleResource
 php artisan make:controller Api/V1/ZoneController
 php artisan make:resource ZoneResource
+php artisan make:controller Api/V1/ParkingController
+php artisan make:resource ParkingResource
+php artisan make:observer ParkingObserver --model=Parking
 ```
