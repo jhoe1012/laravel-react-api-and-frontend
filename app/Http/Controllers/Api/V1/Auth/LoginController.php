@@ -12,7 +12,6 @@ use Illuminate\Validation\ValidationException;
 /**
  * @group Auth
  */
-
 class LoginController extends Controller
 {
     public function __invoke(Request $request)

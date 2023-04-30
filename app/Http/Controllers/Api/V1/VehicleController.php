@@ -11,7 +11,6 @@ use Illuminate\Http\Response;
 /**
  * @group Vehicles
  */
-
 class VehicleController extends Controller
 {
     /**

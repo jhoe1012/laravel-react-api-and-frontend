@@ -12,7 +12,6 @@ use Illuminate\Http\Response;
 /**
  * @group Parking
  */
-
 class ParkingController extends Controller
 {
     public function start(Request $request)
@@ -21,7 +20,7 @@ class ParkingController extends Controller
             'vehicle_id' => [
                 'required',
                 'integer',
-                'exists:vehicles,id,deleted_at,NULL,user_id,' . auth()->id(),
+                'exists:vehicles,id,deleted_at,NULL,user_id,'.auth()->id(),
             ],
             'zone_id' => ['required', 'integer', 'exists:zones,id'],
         ]);

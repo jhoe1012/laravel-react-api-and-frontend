@@ -10,7 +10,6 @@ use Illuminate\Validation\Rule;
 /**
  * @group Auth
  */
-
 class ProfileController extends Controller
 {
     public function show(Request $request)

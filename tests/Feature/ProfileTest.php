@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
@@ -28,7 +27,7 @@ class ProfileTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->putJson('/api/v1/profile', [
-            'name'  => 'John Updated',
+            'name' => 'John Updated',
             'email' => 'john_updated@example.com',
         ]);
 
@@ -39,7 +38,7 @@ class ProfileTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'name' => 'John Updated',
-            'email' => 'john_updated@example.com'
+            'email' => 'john_updated@example.com',
         ]);
     }
 
@@ -48,8 +47,8 @@ class ProfileTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->putJson('/api/v1/password', [
-            'current_password'      => 'password',
-            'password'              => 'testing123',
+            'current_password' => 'password',
+            'password' => 'testing123',
             'password_confirmation' => 'testing123',
         ]);
 

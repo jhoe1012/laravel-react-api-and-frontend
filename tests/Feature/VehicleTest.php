@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Vehicle;
 use App\Models\Zone;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class VehicleTest extends TestCase
@@ -18,12 +17,12 @@ class VehicleTest extends TestCase
     {
         $john = User::factory()->create();
         $vehicleForJohn = Vehicle::factory()->create([
-            'user_id' => $john->id
+            'user_id' => $john->id,
         ]);
 
         $adam = User::factory()->create();
         $vehicleForAdam = Vehicle::factory()->create([
-            'user_id' => $adam->id
+            'user_id' => $adam->id,
         ]);
 
         $response = $this->actingAs($john)->getJson('/api/v1/vehicles');
@@ -40,7 +39,7 @@ class VehicleTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->postJson('/api/v1/vehicles', [
-            'plate_number' => 'AAA111'
+            'plate_number' => 'AAA111',
         ]);
 
         $response->assertStatus(201)
@@ -60,10 +59,10 @@ class VehicleTest extends TestCase
     {
         $user = User::factory()->create();
         $vehicle = Vehicle::factory()->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
-        $response = $this->actingAs($user)->putJson('/api/v1/vehicles/' . $vehicle->id, [
+        $response = $this->actingAs($user)->putJson('/api/v1/vehicles/'.$vehicle->id, [
             'plate_number' => 'AAA123',
         ]);
 
@@ -80,16 +79,16 @@ class VehicleTest extends TestCase
     {
         $user = User::factory()->create();
         $vehicle = Vehicle::factory()->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
-        $response = $this->actingAs($user)->deleteJson('/api/v1/vehicles/' . $vehicle->id);
+        $response = $this->actingAs($user)->deleteJson('/api/v1/vehicles/'.$vehicle->id);
 
         $response->assertNoContent();
 
         $this->assertDatabaseMissing('vehicles', [
             'id' => $vehicle->id,
-            'deleted_at' => NULL
+            'deleted_at' => null,
         ])->assertDatabaseCount('vehicles', 1); // we have SoftDeletes, remember?
     }
 
@@ -97,7 +96,7 @@ class VehicleTest extends TestCase
     {
         $user = User::factory()->create();
         $vehicle = Vehicle::factory()->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
         $zone = Zone::first();
 
@@ -109,8 +108,8 @@ class VehicleTest extends TestCase
             ->assertJsonStructure(['data'])
             ->assertJson([
                 'data' => [
-                    'start_time'  => now()->toDateTimeString(),
-                    'stop_time'   => null,
+                    'start_time' => now()->toDateTimeString(),
+                    'stop_time' => null,
                     'total_price' => 0,
                 ],
             ]);
@@ -123,55 +122,55 @@ class VehicleTest extends TestCase
         $user = User::factory()->create();
         $vehicle = Vehicle::factory()->create(['user_id' => $user->id]);
         $zone = Zone::first();
- 
+
         $this->actingAs($user)->postJson('/api/v1/parkings/start', [
             'vehicle_id' => $vehicle->id,
-            'zone_id'    => $zone->id,
+            'zone_id' => $zone->id,
         ]);
- 
+
         $this->travel(2)->hours();
- 
+
         $parking = Parking::first();
-        $response = $this->actingAs($user)->getJson('/api/v1/parkings/' . $parking->id);
- 
+        $response = $this->actingAs($user)->getJson('/api/v1/parkings/'.$parking->id);
+
         $response->assertStatus(200)
             ->assertJsonStructure(['data'])
             ->assertJson([
                 'data' => [
-                    'stop_time'   => null,
+                    'stop_time' => null,
                     'total_price' => $zone->price_per_hour * 2,
                 ],
             ]);
     }
- 
+
     public function testUserCanStopParking()
     {
         $user = User::factory()->create();
         $vehicle = Vehicle::factory()->create(['user_id' => $user->id]);
         $zone = Zone::first();
- 
+
         $this->actingAs($user)->postJson('/api/v1/parkings/start', [
             'vehicle_id' => $vehicle->id,
-            'zone_id'    => $zone->id,
+            'zone_id' => $zone->id,
         ]);
- 
+
         $this->travel(2)->hours();
- 
+
         $parking = Parking::first();
-        $response = $this->actingAs($user)->putJson('/api/v1/parkings/' . $parking->id);
- 
+        $response = $this->actingAs($user)->putJson('/api/v1/parkings/'.$parking->id);
+
         $updatedParking = Parking::find($parking->id);
- 
+
         $response->assertStatus(200)
             ->assertJsonStructure(['data'])
             ->assertJson([
                 'data' => [
-                    'start_time'  => $updatedParking->start_time->toDateTimeString(),
-                    'stop_time'   => $updatedParking->stop_time->toDateTimeString(),
+                    'start_time' => $updatedParking->start_time->toDateTimeString(),
+                    'stop_time' => $updatedParking->stop_time->toDateTimeString(),
                     'total_price' => $updatedParking->total_price,
                 ],
             ]);
- 
+
         $this->assertDatabaseCount('parkings', '1');
     }
 }

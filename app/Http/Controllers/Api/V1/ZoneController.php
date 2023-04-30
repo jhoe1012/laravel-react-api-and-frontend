@@ -9,7 +9,6 @@ use App\Models\Zone;
 /**
  * @group Zones
  */
-
 class ZoneController extends Controller
 {
     public function index()
