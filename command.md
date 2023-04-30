@@ -27,4 +27,22 @@ php artisan make:test ParkingTest
 composer require --dev knuckleswtf/scribe
 php artisan vendor:publish --tag=scribe-config
 php artisan scribe:generate
+
+npm init vite@latest
+
+✔ Project name: … React-Car-Parking-App-Demo
+✔ Select a framework: › React
+✔ Select a variant: › JavaScript
+ 
+Scaffolding project in ./React-Car-Parking-App-Demo...
+ 
+Done.
+
+cd React-Car-Parking-App-Demo
+npm install
+npm run dev
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init
+npm install -D eslint eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks
 ```
