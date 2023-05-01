@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import { route } from '@/routes'
 
@@ -16,9 +16,9 @@ function NamedLink(props) {
   )
 }
 
-NamedLink.PropTypes = {
-  name: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+NamedLink.propTypes = {
+  name: propTypes.string.isRequired,
+  children: propTypes.node.isRequired,
 }
 
 export default NamedLink
