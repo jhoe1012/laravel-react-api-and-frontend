@@ -1,21 +1,26 @@
 import { useState } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import ValidationError from '@/components/ValidationError'
-
+import IconSpinner from '@/components/IconSpinner'
 
 function Register() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
-  const { register, errors } = useAuth()
+  const { register, errors, loading } = useAuth()
 
   async function handleSubmit(event) {
     event.preventDefault()
 
-    await register({name, email,password, password_confirmation: passwordConfirmation})
+    await register({
+      name,
+      email,
+      password,
+      password_confirmation: passwordConfirmation,
+    })
     setPassword('')
-    setPasswordConfirmation('') 
+    setPasswordConfirmation('')
     // const data = { name, email, password, passwordConfirmation }
     // console.log(data)
   }
@@ -37,8 +42,9 @@ function Register() {
             onChange={(event) => setName(event.target.value)}
             className="form-input"
             autoComplete="name"
+            disable={loading}
           />
-          <ValidationError errors={errors} field='name' />
+          <ValidationError errors={errors} field="name" />
         </div>
 
         <div className="flex flex-col gap-2 mb-4">
@@ -53,8 +59,9 @@ function Register() {
             onChange={(event) => setEmail(event.target.value)}
             className="form-input"
             autoComplete="email"
+            disable={loading}
           />
-          <ValidationError errors={errors} field='email' />
+          <ValidationError errors={errors} field="email" />
         </div>
 
         <div className="flex flex-col gap-2 ">
@@ -69,8 +76,9 @@ function Register() {
             onChange={(event) => setPassword(event.target.value)}
             className="form-input"
             autoComplete="new-password"
+            disable={loading}
           />
-          <ValidationError errors={errors} field='password' />
+          <ValidationError errors={errors} field="password" />
         </div>
 
         <div className="flex flex-col gap-2 ">
@@ -87,13 +95,19 @@ function Register() {
             }
             className="form-input"
             autoComplete="new-password"
+            disable={loading}
           />
         </div>
 
         <div className="border-t h-[1px] my-6"></div>
 
         <div className="flex flex-col gap-2 mb-4">
-          <button type="submit" className="btn btn-primary">
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={loading}
+          >
+            {loading && <IconSpinner />}
                         Register
           </button>
         </div>
