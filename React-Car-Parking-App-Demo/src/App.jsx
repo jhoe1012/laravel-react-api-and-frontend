@@ -1,9 +1,9 @@
-import { Outlet } from 'react-router-dom'
 import NamedLink from '@/components/NamedLink'
 import { useAuth } from '@/hooks/useAuth'
+import { Outlet } from 'react-router-dom'
 
 function App() {
-  const { isLoggedIn, logout } = useAuth
+  const { isLoggedIn, logout } = useAuth()
 
   axios.interceptors.response.use(
     (response) => response,
@@ -42,11 +42,14 @@ function App() {
   function rightAuthLinks() {
     return (
       <>
+        <NamedLink name="profile.edit">
+        Profile
+        </NamedLink>
         <button
           onClick={logout}
           type="button"
           className="text-blue-600"
-        ></button>
+        >Logout</button>
       </>
     )
   }

@@ -1,6 +1,7 @@
 const routeNames = {
   'home': '/',
   'register': '/register',
+  'profile.edit':'/profile',
   'login':'/login',
   'vehicles.index' : '/vehicles',
   'parkings.active': '/parkings/active',
@@ -11,7 +12,7 @@ function route(name, params = {}) {
 
   for (const prop in params) {
     if (Object.prototype.hasOwnProperty.call(params, prop)) {
-      url = url.replace(`:${prop}`, params[prop])
+      url = url.replace(`:${prop}`, params[ prop ])
     }
   }
 

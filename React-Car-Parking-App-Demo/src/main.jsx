@@ -1,15 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
 import App from '@/App'
 import '@/assets/main.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from '@/views/Home'
-import Register from '@/views/auth/Register'
-import Login from '@/views/auth/Login'
 import { route } from '@/routes'
-import VehiclesList from '@/views/vehicles/Vehicles'
+import Home from '@/views/Home'
+import Login from '@/views/auth/Login'
+import Register from '@/views/auth/Register'
 import ActiveParkings from '@/views/parkings/ActiveParkings'
+import EditProfile from '@/views/profile/EditProfile'
+import VehiclesList from '@/views/vehicles/Vehicles'
 import axios from 'axios'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 window.axios = axios
 
@@ -26,6 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route index element={<Home />} />
           <Route path={route('register')} element={<Register />} />
           <Route path={route('login')} element={<Login />} />
+          <Routes path={route('profile.edit')} element={<EditProfile />} />
           <Route path={route('vehicles.index')} element={<VehiclesList />} />
           <Route path={route('parkings.active')} element={<ActiveParkings />} />
         </Route>

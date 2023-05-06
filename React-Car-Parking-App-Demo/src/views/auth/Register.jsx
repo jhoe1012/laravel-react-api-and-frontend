@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { useAuth } from '@/hooks/useAuth'
-import ValidationError from '@/components/ValidationError'
 import IconSpinner from '@/components/IconSpinner'
+import ValidationError from '@/components/ValidationError'
+import { useAuth } from '@/hooks/useAuth'
+import { useState } from 'react'
 
 function Register() {
   const [name, setName] = useState('')
