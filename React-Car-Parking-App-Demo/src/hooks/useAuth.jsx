@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { route } from '@/routes'
 import { useState, useMemo, useEffect } from 'react'
 import { useLocalStorage } from 'react-use-storage'
+import axios from 'axios'
 
 export function useAuth() {
   const [errors, setErrors] = useState({})
@@ -25,14 +26,30 @@ export function useAuth() {
     setErrors({})
     setLoading(true)
 
-    return axios
-      .post('auth/register', data)
+    return axios.post('auth/register', data)
       .then((response) => {
         setAccessToken(response.data.access_token)
         navigate(route('vehicles.index'))
       })
       .catch((error) => {
         if (error.response.status === 422) {
+          setErrors(error.response.data.errors)
+        }
+      })
+      .finally(() => setLoading(false))
+  }
+
+  async function login(data) {
+    setErrors({})
+    setLoading(true)
+
+    return axios.post('/auth/login', data)
+      .then(response => {
+        setAccessToken(response.data.access_token)
+        navigate(route('parkings.active'))
+      })
+      .catch(error => {
+        if(error.response.status === 422){
           setErrors(error.response.data.errors)
         }
       })
@@ -47,5 +64,5 @@ export function useAuth() {
     navigate(route('login'))
   }
 
-  return { register, errors, loading, isLoggedIn, logout }
+  return { register,login, errors, loading, isLoggedIn, logout }
 }

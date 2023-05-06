@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import NamedLink from '@/components/NamedLink'
 import { useAuth } from '@/hooks/useAuth'
-import { func } from 'prop-types'
 
 function App() {
   const { isLoggedIn, logout } = useAuth
@@ -25,6 +24,7 @@ function App() {
   function leftAuthLinks() {
     return (
       <>
+        <NamedLink name="parkings.active">Parkings</NamedLink>
         <NamedLink name="vehicles.index">Vehicles</NamedLink>
       </>
     )
