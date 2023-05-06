@@ -49,4 +49,5 @@ npm run lint
 npm install react-router-dom --save
 npm install prop-types --save
 npm install axios --save
+npm install react-use-storage --save
 ```

@@ -42,7 +42,7 @@ function Register() {
             onChange={(event) => setName(event.target.value)}
             className="form-input"
             autoComplete="name"
-            disable={loading}
+            disabled={loading}
           />
           <ValidationError errors={errors} field="name" />
         </div>
@@ -59,7 +59,7 @@ function Register() {
             onChange={(event) => setEmail(event.target.value)}
             className="form-input"
             autoComplete="email"
-            disable={loading}
+            disabled={loading}
           />
           <ValidationError errors={errors} field="email" />
         </div>
@@ -76,7 +76,7 @@ function Register() {
             onChange={(event) => setPassword(event.target.value)}
             className="form-input"
             autoComplete="new-password"
-            disable={loading}
+            disabled={loading}
           />
           <ValidationError errors={errors} field="password" />
         </div>
@@ -95,7 +95,7 @@ function Register() {
             }
             className="form-input"
             autoComplete="new-password"
-            disable={loading}
+            disabled={loading}
           />
         </div>
 

@@ -1,11 +1,25 @@
 import { useNavigate } from 'react-router-dom'
 import { route } from '@/routes'
-import { useState } from 'react'
+import { useState, useMemo, useEffect } from 'react'
+import { useLocalStorage } from 'react-use-storage'
 
 export function useAuth() {
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
+  const [accessToken, setAccessToken, removeAccessToken] = useLocalStorage(
+    'access_token',
+    '',
+  )
+
   const navigate = useNavigate()
+
+  const isLoggedIn = useMemo(() => !!accessToken, [accessToken])
+
+  useEffect(() => {
+    if (accessToken) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`
+    }
+  }, [accessToken])
 
   async function register(data) {
     setErrors({})
@@ -13,7 +27,8 @@ export function useAuth() {
 
     return axios
       .post('auth/register', data)
-      .then(() => {
+      .then((response) => {
+        setAccessToken(response.data.access_token)
         navigate(route('vehicles.index'))
       })
       .catch((error) => {
@@ -21,8 +36,16 @@ export function useAuth() {
           setErrors(error.response.data.errors)
         }
       })
-      .finally(()=>setLoading(false))
+      .finally(() => setLoading(false))
   }
 
-  return { register, errors, loading }
+  async function logout(force = false) {
+    if (!force) {
+      await axios.post('auth/logout')
+    }
+    removeAccessToken()
+    navigate(route('login'))
+  }
+
+  return { register, errors, loading, isLoggedIn, logout }
 }
