@@ -7,6 +7,7 @@ import Register from '@/views/auth/Register'
 import ActiveParkings from '@/views/parkings/ActiveParkings'
 import ChangePassword from '@/views/profile/ChangePassword'
 import EditProfile from '@/views/profile/EditProfile'
+import CreateVehicle from '@/views/vehicles/CreateVehicle'
 import VehiclesList from '@/views/vehicles/Vehicles'
 import axios from 'axios'
 import React from 'react'
@@ -32,6 +33,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path={route('profile.edit')} element={<EditProfile />} />
           <Route path={route('profile.change-password')} element={<ChangePassword />} />
           <Route path={route('vehicles.index')} element={<VehiclesList />} />
+          <Route path={route('vehicles.create')} element={<CreateVehicle />} />
           <Route path={route('parkings.active')} element={<ActiveParkings />} />
         </Route>
       </Routes>
