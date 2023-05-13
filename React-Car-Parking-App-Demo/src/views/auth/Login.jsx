@@ -1,7 +1,7 @@
-import { useState } from 'react'
 import IconSpinner from '@/components/IconSpinner'
 import ValidationError from '@/components/ValidationError'
 import { useAuth } from '@/hooks/useAuth'
+import { useState } from 'react'
 
 function Login() {
   const [email, setEmail] = useState('')
@@ -42,7 +42,7 @@ function Login() {
                         Password
           </label>
           <input
-            type="text"
+            type="password"
             name="password"
             id="password"
             value={password}
