@@ -5,6 +5,7 @@ import Home from '@/views/Home'
 import Login from '@/views/auth/Login'
 import Register from '@/views/auth/Register'
 import ActiveParkings from '@/views/parkings/ActiveParkings'
+import OrderParking from '@/views/parkings/OrderParking'
 import ChangePassword from '@/views/profile/ChangePassword'
 import EditProfile from '@/views/profile/EditProfile'
 import CreateVehicle from '@/views/vehicles/CreateVehicle'
@@ -36,6 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path={route('vehicles.create')} element={<CreateVehicle />} />
           <Route path={route('vehicles.edit')} element={<EditVehicle />} />
           <Route path={route('parkings.active')} element={<ActiveParkings />} />
+          <Route path={route('parkings.create')} element={<OrderParking />} />
         </Route>
       </Routes>
     </BrowserRouter>
