@@ -14,6 +14,11 @@ use Illuminate\Http\Response;
  */
 class ParkingController extends Controller
 {
+    public function index()
+    {
+       return ParkingResource::collection(Parking::All());
+    }
+
     public function start(Request $request)
     {
         $parkingData = $request->validate([
