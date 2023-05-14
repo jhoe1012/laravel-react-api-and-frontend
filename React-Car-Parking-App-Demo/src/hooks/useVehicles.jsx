@@ -19,5 +19,5 @@ export function useVehicles() {
       .catch(() => {})
   }
 
-  return { vehicles }
+  return { vehicles, getVehicles }
 }

@@ -1,9 +1,12 @@
+import { useVehicle } from '@/hooks/useVehicle'
 import { useVehicles } from '@/hooks/useVehicles'
 import { route } from '@/routes'
 import { Link } from 'react-router-dom'
 
+useVehicle
 function VehiclesList() {
-  const { vehicles } = useVehicles()
+  const { vehicles, getVehicles } = useVehicles()
+  const { destroyVehicle } = useVehicle()
 
   return (
     <div className="flex flex-col mx_auto md:w-96 w-full">
@@ -42,6 +45,10 @@ function VehiclesList() {
                             <button
                               type="button"
                               className="btn text-white bg-red-600 hover:bg-red-500 text-sm"
+                              onClick={async () => {
+                                await destroyVehicle(vehicle)
+                                await getVehicles()
+                              }}
                             >
                                         X
                             </button>
