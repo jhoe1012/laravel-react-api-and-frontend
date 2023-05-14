@@ -29,10 +29,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('parkings/start', [ParkingController::class, 'start']);
     Route::get('parkings/{parking}', [ParkingController::class, 'show']);
     // Route::put('parkings/{parking}', [ParkingController::class, 'stop']);
-    Route::bind('activeParking', function($id){
+    Route::bind('activeParking', function ($id) {
         return Parking::where('id', $id)->active()->firstOrFail();
     });
-    Route::put('parkings/{activeParking}', [ParkingController::class,'stop']);
+    Route::put('parkings/{activeParking}', [ParkingController::class, 'stop']);
 });
 
 Route::post('auth/register', Auth\RegisterController::class);

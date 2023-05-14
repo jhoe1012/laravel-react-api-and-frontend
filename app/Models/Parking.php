@@ -52,7 +52,6 @@ class Parking extends Model
         return $query->whereNotNull('stop_time');
     }
 
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

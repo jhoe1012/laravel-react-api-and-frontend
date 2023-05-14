@@ -9,7 +9,7 @@ function VehiclesList() {
   const { destroyVehicle } = useVehicle()
 
   return (
-    <div className="flex flex-col mx_auto md:w-96 w-full">
+    <div className="flex flex-col mx-auto md:w-96 w-full">
       <h1 className="heading">My Vehicles</h1>
 
       <Link to={route('vehicles.create')} className="btn btn-primary">

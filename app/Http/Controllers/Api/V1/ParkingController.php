@@ -37,7 +37,7 @@ class ParkingController extends Controller
             'vehicle_id' => [
                 'required',
                 'integer',
-                'exists:vehicles,id,deleted_at,NULL,user_id,' . auth()->id(),
+                'exists:vehicles,id,deleted_at,NULL,user_id,'.auth()->id(),
             ],
             'zone_id' => ['required', 'integer', 'exists:zones,id'],
         ]);
