@@ -26,24 +26,24 @@ window.axios.defaults.baseURL='http://laravel_react.test/api/v1'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<Home />} />
-          <Route path={route('register')} element={<Register />} />
-          <Route path={route('login')} element={<Login />} />
-          <Route path={route('profile.edit')} element={<EditProfile />} />
-          <Route path={route('profile.change-password')} element={<ChangePassword />} />
-          <Route path={route('vehicles.index')} element={<VehiclesList />} />
-          <Route path={route('vehicles.create')} element={<CreateVehicle />} />
-          <Route path={route('vehicles.edit')} element={<EditVehicle />} />
-          <Route path={route('parkings.active')} element={<ActiveParkings />} />
-          <Route path={route('parkings.history')} element={<ParkingHistory />} />
-          <Route path={route('parkings.create')} element={<OrderParking />} />
-          <Route path={route('parkings.show')} element={<ParkingDetails />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>,
+    <React.StrictMode>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<App />}>
+                    <Route index element={<Home />} />
+                    <Route path={route('register')} element={<Register />} />
+                    <Route path={route('login')} element={<Login />} />
+                    <Route path={route('profile.edit')} element={<EditProfile />} />
+                    <Route path={route('profile.change-password')} element={<ChangePassword />} />
+                    <Route path={route('vehicles.index')} element={<VehiclesList />} />
+                    <Route path={route('vehicles.create')} element={<CreateVehicle />} />
+                    <Route path={route('vehicles.edit')} element={<EditVehicle />} />
+                    <Route path={route('parkings.active')} element={<ActiveParkings />} />
+                    <Route path={route('parkings.history')} element={<ParkingHistory />} />
+                    <Route path={route('parkings.create')} element={<OrderParking />} />
+                    <Route path={route('parkings.show')} element={<ParkingDetails />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    </React.StrictMode>,
 )
