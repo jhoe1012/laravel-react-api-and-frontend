@@ -11,7 +11,7 @@ export function useParking() {
     setLoading(true)
     return axios
       .post('parkings/start', data)
-      .then(() => navigate(route('parking.active')))
+      .then(() => navigate(route('parkings.active')))
       .catch((error) => {
         if (error.response.status === 422) {
           setErrors(error.response.data.errors)

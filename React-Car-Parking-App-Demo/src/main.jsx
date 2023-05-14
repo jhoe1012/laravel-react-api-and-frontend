@@ -6,6 +6,7 @@ import Login from '@/views/auth/Login'
 import Register from '@/views/auth/Register'
 import ActiveParkings from '@/views/parkings/ActiveParkings'
 import OrderParking from '@/views/parkings/OrderParking'
+import ParkingHistory from '@/views/parkings/ParkingHistory'
 import ChangePassword from '@/views/profile/ChangePassword'
 import EditProfile from '@/views/profile/EditProfile'
 import CreateVehicle from '@/views/vehicles/CreateVehicle'
@@ -15,6 +16,7 @@ import axios from 'axios'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+ParkingHistory
 
 window.axios = axios
 
@@ -37,6 +39,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path={route('vehicles.create')} element={<CreateVehicle />} />
           <Route path={route('vehicles.edit')} element={<EditVehicle />} />
           <Route path={route('parkings.active')} element={<ActiveParkings />} />
+          <Route path={route('parkings.history')} element={<ParkingHistory />} />
           <Route path={route('parkings.create')} element={<OrderParking />} />
         </Route>
       </Routes>

@@ -29,7 +29,7 @@ function VehiclesList() {
                               {vehicle.plate_number}
                             </div>
                             <div className="font-normal text-gray-600 pl-2 grow truncate">
-                              {vehicle.descriptions}
+                              {vehicle.description}
                             </div>
                           </div>
                           <div className="flex gap-1">

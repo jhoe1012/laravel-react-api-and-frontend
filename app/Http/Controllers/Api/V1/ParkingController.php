@@ -16,7 +16,19 @@ class ParkingController extends Controller
 {
     public function index()
     {
-       return ParkingResource::collection(Parking::All());
+        $activeParkings = Parking::active()->latest('start_time')->get();
+
+        return ParkingResource::collection($activeParkings);
+    }
+
+    public function history()
+    {
+        $stoppedParkings = Parking::stopped()
+            ->with(['vehicle' => fn ($q) => $q->withTrashed()])
+            ->latest('stop_time')
+            ->get();
+
+        return ParkingResource::collection($stoppedParkings);
     }
 
     public function start(Request $request)
@@ -25,7 +37,7 @@ class ParkingController extends Controller
             'vehicle_id' => [
                 'required',
                 'integer',
-                'exists:vehicles,id,deleted_at,NULL,user_id,'.auth()->id(),
+                'exists:vehicles,id,deleted_at,NULL,user_id,' . auth()->id(),
             ],
             'zone_id' => ['required', 'integer', 'exists:zones,id'],
         ]);
@@ -44,6 +56,8 @@ class ParkingController extends Controller
 
     public function show(Parking $parking)
     {
+        $parking->load(['vehicle' => fn ($q) => $q->withTrashed()]);
+
         return ParkingResource::make($parking);
     }
 
